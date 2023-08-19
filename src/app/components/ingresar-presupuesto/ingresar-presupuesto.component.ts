@@ -10,7 +10,6 @@ import { PresupuestoService } from 'src/app/services/presupuesto.service';
 export class IngresarPresupuestoComponent {
   cantidad: number = 0;
   cantidadincorrecta: Boolean = false;
-
   constructor(
     private _presupuestoService: PresupuestoService,
     private router: Router
@@ -21,9 +20,12 @@ export class IngresarPresupuestoComponent {
       this.cantidadincorrecta = false;
       this._presupuestoService.presupuesto = this.cantidad;
       this._presupuestoService.restante = this.cantidad;
+      this._presupuestoService.guardarPresupuestoEnLocalStorage(this.cantidad); // Guardar el presupuesto en Local Storage
+      this._presupuestoService.guardarRestanteEnLocalStorage(this.cantidad); // Actualizar restante aquí
       this.router.navigate(['/gastos'])
     } else {
       this.cantidadincorrecta = true;
     }
   }
+
 }

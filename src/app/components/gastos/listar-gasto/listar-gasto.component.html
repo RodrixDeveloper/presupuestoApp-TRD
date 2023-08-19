@@ -16,14 +16,18 @@
 <div class="row">
     <div class="col-lg-12">
         <ul class="list-group list-group-flush">
-            <li *ngFor="let gasto of listGasto" class="list-group-item d-flex justify-content-between">
+            <li *ngFor="let gasto of listGasto; let i = index" class="list-group-item d-flex d-flex justify-content-between">
                 <strong>
                     {{gasto.nombre | uppercase}}
                 </strong>
-                  <span class="badge rounded-pill text-bg-secondary">
-                    {{gasto.cantidad}} Bs.
-                </span>
+                <div class="">
+                    <span class="badge rounded-pill text-bg-secondary">
+                        {{gasto.cantidad}} Bs.
+                    </span>
+                    <i class="fa-solid fa-circle-xmark fa-xl" style="color: #ff0000; font-size: 27px; margin-left: 10px; cursor:pointer"
+                    (click)="eliminarGasto(i)"></i>
+                </div>
             </li>
-          </ul>
+        </ul>
     </div>
 </div>

@@ -9,9 +9,15 @@ export class PresupuestoService {
   restante: number;
   private gastos$ = new Subject<any>();
 
+
+  private gastosKey = 'listaGastos';
+  private presupuestoKey = 'presupuesto';
+  private restanteKey = 'restante';
+
+
   constructor() {
-    this.presupuesto=0
-    this.restante=0
+    this.presupuesto = this.obtenerPresupuestoDesdeLocalStorage();
+    this.restante= this.obtenerRestanteDesdeLocalStorage();
   }
 
   agregarGasto(gasto:any){
@@ -21,5 +27,39 @@ export class PresupuestoService {
 
   getGastos():Observable<any>{
     return this.gastos$.asObservable();
+  }
+
+  guardarGastosEnLocalStorage(gastos: any[]) {
+    localStorage.setItem(this.gastosKey, JSON.stringify(gastos));
+  }
+
+  obtenerGastosDesdeLocalStorage(): any[] {
+    const gastosString = localStorage.getItem(this.gastosKey);
+    return gastosString ? JSON.parse(gastosString) : [];
+  }
+
+  guardarPresupuestoEnLocalStorage(presupuesto: number) {
+    localStorage.setItem(this.presupuestoKey, JSON.stringify(presupuesto));
+  }
+
+  obtenerPresupuestoDesdeLocalStorage(): number {
+    const presupuestoString = localStorage.getItem(this.presupuestoKey);
+    return presupuestoString ? JSON.parse(presupuestoString) : 0;
+  }
+
+  guardarRestanteEnLocalStorage(restante: number) {
+    localStorage.setItem(this.restanteKey, JSON.stringify(restante));
+  }
+
+  obtenerRestanteDesdeLocalStorage(): number {
+    const restanteString = localStorage.getItem(this.restanteKey);
+    return restanteString ? JSON.parse(restanteString) : 0;
+  }
+
+
+  eliminarPresupuestoDeLocalStorage() {
+    localStorage.removeItem(this.gastosKey);
+    localStorage.removeItem(this.presupuestoKey);
+    localStorage.removeItem(this.restanteKey);
   }
 }
