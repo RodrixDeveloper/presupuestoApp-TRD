@@ -21,7 +21,7 @@ export class ListarGastoComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         this.restante = this.restante - data.cantidad;
         this.listGasto.push(data);
-        console.log(this.listGasto);
+        // console.log(this.listGasto);
         this._presupuestoService.guardarRestanteEnLocalStorage(this.restante); // Guardar el presupuesto en Local Storage
         this._presupuestoService.guardarGastosEnLocalStorage(this.listGasto);
       });
@@ -49,17 +49,6 @@ export class ListarGastoComponent implements OnInit, OnDestroy {
       return 'alert alert-secondary';
     }
   }
-
-  // eliminarGasto(index: number) {
-  //   if (index >= 0 && index < this.listGasto.length) {
-  //     const gastoEliminado = this.listGasto.splice(index, 1); // Elimina 1 elemento en el índice especificado
-  //     this.restante += gastoEliminado[0].cantidad; // Añade la cantidad eliminada al restante
-  //     this._presupuestoService.guardarRestanteEnLocalStorage(this.restante); // Actualiza el restante en Local Storage
-  //     this._presupuestoService.guardarGastosEnLocalStorage(this.listGasto); // Actualiza la lista de gastos en Local Storage
-  //     // this.listGasto = this._presupuestoService.obtenerGastosDesdeLocalStorage();
-
-  //   }
-  // }
   
   eliminarGasto(index: number) {
     if (index >= 0 && index < this.listGasto.length) {

@@ -18,7 +18,7 @@ export class GastosComponent implements OnInit {
     // this.router.navigate(['/ingresarPresupuesto'])
     // }
 
-    console.log(this._presupuestoService.presupuesto);
+    // console.log(this._presupuestoService.presupuesto);
   }
 
   restablecerGastos() {
